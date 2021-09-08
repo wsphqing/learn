@@ -1,4 +1,6 @@
 // webpack.config.js
+const RmFilePlugin = require('./plugins/RmFilePlugin');
+
 module.exports = {
   mode: 'none',
   resolveLoader: {
@@ -21,5 +23,8 @@ module.exports = {
         ],
       }
     ]
-  }
+  },
+  plugins: [
+    new RmFilePlugin()
+  ]
 }

@@ -1,5 +1,4 @@
 module.exports = function(source) {
-  console.log(source)
   // 获取webpack.config.js中配置的options
   let options = this.getOptions();
   let result = source;
