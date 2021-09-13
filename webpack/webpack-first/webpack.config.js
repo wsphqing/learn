@@ -1,5 +1,6 @@
 // webpack.config.js
 const RmFilePlugin = require('./plugins/RmFilePlugin');
+const DelCommentPlugin = require('./plugins/DelCommentPlugin');
 
 module.exports = {
   mode: 'none',
@@ -13,18 +14,19 @@ module.exports = {
         test: /\.js?$/,
         use: [
           'babel-loader',
-          {
-            loader: "MyLoader",
-            options: {
-              oneLine: true, // 是否删除单行注释
-              multiline: false, // 是否删除多行注释
-            }
-          },
+          // {
+          //   loader: "MyLoader",
+          //   options: {
+          //     oneLine: true, // 是否删除单行注释
+          //     multiline: false, // 是否删除多行注释
+          //   }
+          // },
         ],
       }
     ]
   },
   plugins: [
-    new RmFilePlugin()
+    new RmFilePlugin(),
+    new DelCommentPlugin()
   ]
 }
