@@ -63,18 +63,3 @@ function arrayToTree(arr) {
 // }
 
 // console.log(JSON.stringify(arrayToTree(arr)))
-
-
-const data = {
-  name: {
-    age: {}
-  },
-  age: {
-    test: 12
-  }
-}
-
-data.name.age = data.age
-data.age.test = 13
-
-console.log(data)

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button id="decrement">-</button>
+    <span id="count"></span>
+    <button id="increment">+</button>
+  </div>
+  <!-- <script src="https://cdnjs.com/libraries/mobx"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mobx/6.3.3/mobx.umd.development.js" integrity="sha512-S/dvAFeeUr4s7sDgnR6Uw5s1d/hM7bBeBmo21LV/hTIUkXP4V9HnxRRH84HgN3GPJ2AXaBwqbFgmoJNjIJXN0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="module">
+    const { autorun, action, computed, makeAutoObservable, observable } = mobx;
+    console.log(mobx)
+
+    const store = makeAutoObservable(
+      {
+        count: 0,
+        get double() {
+          console.log('ddddd')
+          return this.count * 2;
+        },
+        increment() {
+          this.count += 1;
+        },
+        decrement() {
+          this.count -= 1;
+        }
+      }
+    )
+    // store.count = 2;
+
+    // store.increment()
+
+    document.getElementById("increment").onclick = function () {
+      store.increment();
+    }
+
+    document.getElementById("decrement").onclick = function () {
+      store.decrement();
+    }
+
+
+    const $count = document.getElementById('count')
+    $count.innerText = `${store.count}`
+
+    autorun(() => {
+      $count.innerText = `${store.count}`
+    })
+    
+  </script>
+</body>
+</html>
