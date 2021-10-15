@@ -25,6 +25,7 @@ class MachineGune extends AbstractGun {
 }
 
 class Solider {
+  gun: AbstractGun;
   constructor() {
     this.gun = null;
   }
@@ -39,7 +40,7 @@ class Solider {
 }
 
 class Client {
-  static main(args) {
+  static main(args?: any) {
     const sanMao = new Solider();
     sanMao.setGun(new Rifle());
     sanMao.killEnemy();

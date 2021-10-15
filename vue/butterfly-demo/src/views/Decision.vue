@@ -8,7 +8,7 @@
     <button @click="focusCenterWithAnimate">聚焦</button> -->
 
     <button @click="setPlaybackRate">倍速</button>
-    <video id='video' src="https://yaya.cdnjtzy.com/80b2d113e3e22530799a19ff34e2f6eb.mp4" autoplay controls></video>
+    <video id='video' src="" autoplay controls></video>
     <div class="decision-canvas" id="dag-canvas"></div>
   </div>
 </template>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mobx-react/7.2.0/mobxreact.umd.production.min.js" integrity="sha512-RwGoTgb6W3+fADVkFIrv2Qn/qh1ndGzghlnl+tH12bnbB024vlTmfmTvJx+P8QzvOgT8iWIm0GKvpLrrv48Qew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.0.0-alpha-50263d327-20210914/umd/react-dom.production.min.js" integrity="sha512-9Cad5gfaoZpZ6DFEncLM5q0nYiGo/Ejlq7wZYi0OC1ZhG12ci8CA9J2/dS3gFWP32N5l8upZt1M4Y9F2afsaoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="module">
+  console.log(ReactDOM)
+  const  {observer} = window['mobx-react'];
+
+  @observer
+  class TimerView extends React.Component {
+      render() {
+          return (
+              <button onClick={this.onReset.bind(this)}>
+                  Seconds passed: {this.props.appState.timer}
+              </button>
+          );
+      }
+
+      onReset() {
+          this.props.appState.resetTimer();
+      }
+  };
+
+  ReactDOM.render(<TimerView appState={appState} />, document.body);
+</script>
+</html>

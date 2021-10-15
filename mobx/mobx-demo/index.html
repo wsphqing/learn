@@ -5,17 +5,33 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .zebra__shadow__text {
+      font-size: 100px;
+      font-weight: bold;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 6px -6px #000, 4px -4px #fff;
+      background-image: linear-gradient(135deg,#fff 0%,#fff 25%,#000 25%,#000 50%,#fff 50%,#fff 75%,#000 75%,#000 100%);
+      background-size: 6px 6px;
+      background-repeat: repeat;
+      -webkit-background-clip: text;
+    }
+  </style>
 </head>
 <body>
   <div>
     <button id="decrement">-</button>
     <span id="count"></span>
     <button id="increment">+</button>
+    <div class="zebra__shadow__text">sjdfajskld</div>
   </div>
   <!-- <script src="https://cdnjs.com/libraries/mobx"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mobx/6.3.3/mobx.umd.development.js" integrity="sha512-S/dvAFeeUr4s7sDgnR6Uw5s1d/hM7bBeBmo21LV/hTIUkXP4V9HnxRRH84HgN3GPJ2AXaBwqbFgmoJNjIJXN0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="module">
-    const { autorun, action, computed, makeAutoObservable, observable } = mobx;
+    const { autorun, action, computed, makeAutoObservable, observable, configure } = mobx;
+
+    configure({ enforceActions: true });
     console.log(mobx)
 
     const store = makeAutoObservable(
@@ -33,12 +49,13 @@
         }
       }
     )
-    // store.count = 2;
+    store.count = 2;
 
     // store.increment()
 
     document.getElementById("increment").onclick = function () {
-      store.increment();
+      // store.increment();
+      store.count += 1;
     }
 
     document.getElementById("decrement").onclick = function () {
@@ -52,6 +69,25 @@
     autorun(() => {
       $count.innerText = `${store.count}`
     })
+
+
+    const todoStore = observable({
+      todos: [],
+      get completedCount() {
+        return this.todos.filter(todo => todo.completed).length;
+      }
+    })
+
+    autorun(() => {
+      console.log("Completed %d of %d items", todoStore.completedCount, todoStore.todos.length);
+    })
+
+    todoStore.todos[0] = {
+      title: 'Take a walk',
+      computed: false
+    }
+
+    todoStore.todos[0].completed = true;
     
   </script>
 </body>
